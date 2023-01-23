@@ -11,7 +11,8 @@
                     <th>Nome</th>
                     <th>Telefone</th>
                     <th>Email</th>
-                    <th colspan="2">Opções</th>
+                    <th>CEP</th>
+                    <th colspan="3">Opções</th>
                 </tr>
             </thead>
             <tbody>
@@ -21,21 +22,23 @@
                         <td> {{ $client->name }} </td>
                         <td> {{ $client->phone }} </td>
                         <td> {{ $client->email }} </td>
+                        <td> {{ ($client->adress != null) ? $client->adress->cep : "-" }} </td>
                         <td> <a href="{{ route('clients.show', $client->cpf) }}">Exibir</a> </td>
                         <td> <a href="{{ route('clients.edit', $client->cpf) }}">Editar</a> </td>
+                        <td> <a href="{{ route('clients.destroy', $client->cpf) }}">Excluir</a> </td>
                     </tr>
                 @endforeach
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="5">Clientes Cadastrados: {{ $clients->count() }}</td>
+                    <td colspan="8">Clientes Cadastrados: {{ $clients->count() }}</td>
                 </tr>
             </tfoot>
         </table>
     @endif
-    @if(isset($msg))
+    @if(session('msg'))
         <script>
-            alert("{{$msg}}");
+            alert("{{session('msg')}}");
         </script>
     @endif
 @endsection

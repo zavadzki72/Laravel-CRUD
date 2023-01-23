@@ -85,3 +85,7 @@ form.form input[type=submit], form.form input[type=reset], button{
     padding: 0.5rem;
     cursor: pointer;
 }
+
+input[readonly] {
+    background-color: #AFBED1;
+}

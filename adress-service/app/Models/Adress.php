@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Adress extends Model
 {
     use HasFactory;
+
+    public function client()
+    {
+        return $this->belongsTo('App\Models\Client', 'cpf', 'id');
+    }
 }
