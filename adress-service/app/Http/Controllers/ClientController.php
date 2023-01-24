@@ -44,6 +44,7 @@ class ClientController extends Controller
             'name' => $request->input('name'),
             'phone' => $phone,
             'email' => $request->input('email'),
+            'created_at' => Carbon::now()
         ]);
 
         $adress = new Adress();
@@ -56,6 +57,7 @@ class ClientController extends Controller
             'number' => $request->input('number'),
             'cep' => $cep,
             'client_cpf' => $cpf,
+            'created_at' => Carbon::now()
         ]);
 
         return redirect('clients')->with('msg', 'Cliente cadastrado com sucesso!')->with('isError', false);

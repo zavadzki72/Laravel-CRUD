@@ -62,7 +62,7 @@
             </div>
             <div class="text-center text-white p-3" style="background-color: rgba(0, 0, 0, 0.2);">
                 © 2020 Copyright:
-                <a class="text-white" href="https://marccusz.com">marccusz.com</a>
+                <a class="text-white" target="_blank" href="https://marccusz.com">marccusz.com</a>
                 </div>
         </footer>
     </section>
