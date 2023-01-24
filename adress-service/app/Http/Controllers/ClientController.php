@@ -27,7 +27,7 @@ class ClientController extends Controller
 
         if ($client) {
             $this->updateClient($request, $cpf);
-            return redirect('clients')->with('msg', 'Cliente cadastrado com sucesso!');      
+            return redirect('clients')->with('msg', 'Cliente cadastrado com sucesso!')->with('isError', false);    
         }
 
         $client = new Client();
@@ -50,7 +50,7 @@ class ClientController extends Controller
             'client_cpf' => $cpf,
         ]);
 
-        return redirect('clients')->with('msg', 'Cliente cadastrado com sucesso!');      
+        return redirect('clients')->with('msg', 'Cliente cadastrado com sucesso!')->with('isError', false);
     }
 
     public function show($cpf)
@@ -60,7 +60,7 @@ class ClientController extends Controller
         if ($client) {
             return view('clients.show')->with('client', $client);
         } else {
-            return redirect('clients')->with('msg', 'Cliente não encontrado!');
+            return redirect('clients')->with('msg', 'Cliente não encontrado!')->with('isError', true);
         }
     }
 
@@ -71,14 +71,14 @@ class ClientController extends Controller
         if ($client) {
             return view('clients.edit')->with('client', $client);
         } else {
-            return redirect('clients')->with('msg', 'Cliente não encontrado!');
+            return redirect('clients')->with('msg', 'Cliente não encontrado!')->with('isError', true);
         }
     }
 
     public function update(Request $request, $cpf)
     {
         $this->updateClient($request, $cpf);
-        return redirect('clients')->with('msg', 'Cliente atualizado com sucesso!');
+        return redirect('clients')->with('msg', 'Cliente atualizado com sucesso!')->with('isError', false);
     }
 
     private function updateClient(Request $request, $cpf)
@@ -122,6 +122,6 @@ class ClientController extends Controller
                 'inactive_at' => Carbon::now()
             ]);
 
-        return redirect('clients')->with('msg', 'Cliente excluído com sucesso!');
+        return redirect('clients')->with('msg', 'Cliente excluído com sucesso!')->with('isError', false);
     }
 }
