@@ -9,9 +9,9 @@
                     <p class="card-text">{{ $client->email }}</p>
                 </div>
                 <ul class="list-group list-group-light list-group-small">
-                    <li class="list-group-item px-4"><span class="fw-bold">CPF: </span>{{ $client->cpf }}</li>
-                    <li class="list-group-item px-4"><span class="fw-bold">Telefone: </span>{{ $client->phone }}</li>
-                    <li class="list-group-item px-4"><span class="fw-bold">CEP: </span>{{ $client->adress->cep }}</li>
+                    <li class="list-group-item px-4"><span class="fw-bold">CPF: </span><span id="cpf">{{ $client->cpf }}</span></li>
+                    <li class="list-group-item px-4"><span class="fw-bold">Telefone: </span><span id="phone">{{ $client->phone }}</span></li>
+                    <li class="list-group-item px-4"><span class="fw-bold">CEP: </span><span id="cep">{{ $client->adress->cep }}</span></li>
                     <li class="list-group-item px-4"><span class="fw-bold">Logradouro: </span>{{ $client->adress->street }}</li>
                     <li class="list-group-item px-4"><span class="fw-bold">Número: </span>{{ $client->adress->number }}</li>
                     <li class="list-group-item px-4"><span class="fw-bold">Bairro: </span>{{ $client->adress->neighborhood }}</li>

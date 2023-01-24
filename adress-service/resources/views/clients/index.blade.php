@@ -19,9 +19,9 @@
             @foreach ($clients as $client)
                 <tr onclick="location.href=`{{ route('clients.show', $client->cpf) }}`" class="rows">
                     <th scope="row">{{$cont++}}</th>
-                    <td>{{ $client->cpf }}</td>
+                    <td name="cpf">{{ $client->cpf }}</td>
                     <td>{{ $client->name }}</td>
-                    <td>{{ $client->adress->cep }}</td>
+                    <td name="cep">{{ $client->adress->cep }}</td>
                     <td class="text-center">
                         <a href="{{ route('clients.show', $client->cpf) }}" class="nounderline-black" data-bs-toggle="tooltip" data-bs-title="Visualizar cliente">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">

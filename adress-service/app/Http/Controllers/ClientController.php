@@ -23,6 +23,14 @@ class ClientController extends Controller
     public function store(Request $request)
     {
         $cpf = $request->input('cpf');
+        $phone = $request->input('phone');
+        $cep = $request->input('cep');
+
+        $cpf = preg_replace('/[^0-9]/', '', $cpf);
+        $phone = preg_replace('/[^0-9]/', '', $phone);
+        $cep = preg_replace('/[^0-9]/', '', $cep);
+
+
         $client = Client::with('adress')->where('cpf', '=', $cpf)->first();
 
         if ($client) {
@@ -34,7 +42,7 @@ class ClientController extends Controller
         $client->insert([
             'cpf' => $cpf,
             'name' => $request->input('name'),
-            'phone' => $request->input('phone'),
+            'phone' => $phone,
             'email' => $request->input('email'),
         ]);
 
@@ -46,7 +54,7 @@ class ClientController extends Controller
             'state' => $request->input('state'),
             'country' => $request->input('country'),
             'number' => $request->input('number'),
-            'cep' => $request->input('cep'),
+            'cep' => $cep,
             'client_cpf' => $cpf,
         ]);
 
@@ -55,6 +63,8 @@ class ClientController extends Controller
 
     public function show($cpf)
     {
+        $cpf = preg_replace('/[^0-9]/', '', $cpf);
+
         $client = Client::with('adress')->where('cpf', '=', $cpf)->first();
 
         if ($client) {
@@ -66,6 +76,8 @@ class ClientController extends Controller
 
     public function edit($cpf)
     {
+        $cpf = preg_replace('/[^0-9]/', '', $cpf);
+
         $client = Client::with('adress')->where('cpf', '=', $cpf)->first();
 
         if ($client) {
@@ -77,18 +89,26 @@ class ClientController extends Controller
 
     public function update(Request $request, $cpf)
     {
+        $cpf = preg_replace('/[^0-9]/', '', $cpf);
+
         $this->updateClient($request, $cpf);
         return redirect('clients')->with('msg', 'Cliente atualizado com sucesso!')->with('isError', false);
     }
 
     private function updateClient(Request $request, $cpf)
     {
+        $phone = $request->input('phone');
+        $cep = $request->input('cep');
+
+        $phone = preg_replace('/[^0-9]/', '', $phone);
+        $cep = preg_replace('/[^0-9]/', '', $cep);
+
         Client::with('adress')
             ->where('cpf', '=', $cpf)
             ->update([
-                'cpf' => $request->input('cpf'),
+                'cpf' => $cpf,
                 'name' => $request->input('name'),
-                'phone' => $request->input('phone'),
+                'phone' => $phone,
                 'email' => $request->input('email'),
                 'is_active' => true,
                 'inactive_at' => null
@@ -109,13 +129,15 @@ class ClientController extends Controller
         $adress->state = $request->input('state');
         $adress->country = $request->input('country');
         $adress->number = $request->input('number');
-        $adress->cep = $request->input('cep');
+        $adress->cep = $cep;
 
         $adress->save();
     }
 
     public function destroy($cpf)
     {
+        $cpf = preg_replace('/[^0-9]/', '', $cpf);
+
         Client::where('cpf', '=', $cpf)
             ->update([
                 'is_active' => false,
