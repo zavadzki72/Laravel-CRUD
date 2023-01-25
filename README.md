@@ -40,6 +40,9 @@ Entre no diretório do projeto
 Instale as dependências
 
 ```bash
+  composer update --no-scripts
+```
+```bash
   composer dump-autoload
 ```
 ```bash
